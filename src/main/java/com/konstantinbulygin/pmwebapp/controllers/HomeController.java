@@ -35,6 +35,6 @@ public class HomeController {
 
         //sending the data of employees to home view
         model.addAttribute("employeesList", employees);
-        return "home";
+        return "main/home";
     }
 }

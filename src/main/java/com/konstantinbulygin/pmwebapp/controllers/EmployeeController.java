@@ -21,7 +21,7 @@ public class EmployeeController {
     @GetMapping("/new")
     public String displayEmployeeForm(Model model) {
         model.addAttribute("employee", new Employee());
-        return "new-employee";
+        return "employees/new-employee";
     }
 
     //saving project to DB
