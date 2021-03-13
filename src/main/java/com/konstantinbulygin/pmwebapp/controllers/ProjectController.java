@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/projects")
 public class ProjectController {
@@ -29,5 +31,16 @@ public class ProjectController {
     public String saveProject(Project project, Model model) {
         projectRepository.save(project);
         return "redirect:/projects/new";
+    }
+
+    @GetMapping
+    public String displayProjects(Model model) {
+
+        //querying the database for projects
+        List<Project> projects = projectRepository.findAll();
+        //sending the data of projects to home view
+        model.addAttribute("projectsList", projects);
+
+        return "projects/list-projects";
     }
 }

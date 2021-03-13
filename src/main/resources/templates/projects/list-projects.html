@@ -9,8 +9,12 @@
 <nav th:replace="fragments/nav_layout :: navbar"></nav>
 
 
-<div class="m-5">
-    <h4>Current projects</h4>
+<div class="container mt-2">
+    <h3>Project directory</h3>
+    <hr>
+
+    <a th:href="@{/projects/new}" class="btn btn-primary btn-sm mb-3">Add new project</a>
+
     <table class="table table-bordered table-striped">
         <thead class="thead-dark">
         <tr>
@@ -22,26 +26,6 @@
         <tr th:each="aProject : ${projectsList}">
             <td th:text="${aProject.name}"></td>
             <td th:text="${aProject.stage}"></td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-
-<div class="m-5">
-    <h4>Current employees</h4>
-    <table class="table table-bordered table-striped">
-        <thead class="thead-dark">
-        <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Emails</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="aEmployee : ${employeesList}">
-            <td th:text="${aEmployee.firstName}"></td>
-            <td th:text="${aEmployee.lastName}"></td>
-            <td th:text="${aEmployee.email}"></td>
         </tr>
         </tbody>
     </table>

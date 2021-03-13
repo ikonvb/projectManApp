@@ -8,27 +8,13 @@
 
 <nav th:replace="fragments/nav_layout :: navbar"></nav>
 
+<div class="container mt-2">
 
-<div class="m-5">
-    <h4>Current projects</h4>
-    <table class="table table-bordered table-striped">
-        <thead class="thead-dark">
-        <tr>
-            <th>Project Name</th>
-            <th>Project Stage</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="aProject : ${projectsList}">
-            <td th:text="${aProject.name}"></td>
-            <td th:text="${aProject.stage}"></td>
-        </tr>
-        </tbody>
-    </table>
-</div>
+    <h3>Current employees</h3>
+    <hr>
 
-<div class="m-5">
-    <h4>Current employees</h4>
+    <a th:href="@{/employees/new}" class="btn btn-primary btn-sm mb-3">Add new employee</a>
+
     <table class="table table-bordered table-striped">
         <thead class="thead-dark">
         <tr>
