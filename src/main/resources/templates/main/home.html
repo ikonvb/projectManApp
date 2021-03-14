@@ -3,54 +3,64 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
 
 <head th:replace="fragments/head_layout :: header"></head>
+<nav th:replace="fragments/nav_layout :: navbar"></nav>
 
 <body>
 
-<nav th:replace="fragments/nav_layout :: navbar"></nav>
 
-
-<div class="m-5">
+<div class="container">
+    <h3>Main Dashboard</h3>
+    <hr>
     <h4>Current projects</h4>
-    <table class="table table-bordered table-striped">
-        <thead class="thead-dark">
-        <tr>
-            <th>Project Name</th>
-            <th>Project Stage</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="aProject : ${projectsList}">
-            <td th:text="${aProject.name}"></td>
-            <td th:text="${aProject.stage}"></td>
-        </tr>
-        </tbody>
-    </table>
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Project Name</th>
+                    <th>Project Stage</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="aProject : ${projectsList}">
+                    <td th:text="${aProject.name}"></td>
+                    <td th:text="${aProject.stage}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-md-4">
+            <canvas id="myPieChart" height="50" width="50"></canvas>
+        </div>
+
+    </div>
 </div>
 
-<div class="m-5">
+<div class="container">
     <h4>Current employees</h4>
-    <table class="table table-bordered table-striped">
-        <thead class="thead-dark">
-        <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Emails</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="aEmployee : ${employeesList}">
-            <td th:text="${aEmployee.firstName}"></td>
-            <td th:text="${aEmployee.lastName}"></td>
-            <td th:text="${aEmployee.email}"></td>
-        </tr>
-        </tbody>
-    </table>
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Emails</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="aEmployee : ${employeesList}">
+                    <td th:text="${aEmployee.firstName}"></td>
+                    <td th:text="${aEmployee.lastName}"></td>
+                    <td th:text="${aEmployee.email}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 
-<div class="col-md-4">
-    <canvas id="myPieChart" height="50" width="50"> </canvas>
-</div>
-
-<script type="text/javascript" th:src="@{/js/myPieChart.js}"> </script>
+<script type="text/javascript" th:src="@{/js/myPieChart.js}"></script>
 </body>
 </html>
