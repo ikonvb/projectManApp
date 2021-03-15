@@ -7,6 +7,7 @@ import com.konstantinbulygin.pmwebapp.dao.ProjectRepository;
 import com.konstantinbulygin.pmwebapp.dto.ChartData;
 import com.konstantinbulygin.pmwebapp.dto.EmployeeProject;
 import com.konstantinbulygin.pmwebapp.entities.Project;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,10 @@ import java.util.Map;
 
 @Controller
 public class HomeController {
+
+    //variable from app.properties
+    @Value("${version}")
+    private String ver;
 
     private final ProjectRepository projectRepository;
     private final EmployeeRepository employeeRepository;
@@ -30,6 +35,8 @@ public class HomeController {
     public String displayHomeView(Model model) throws JsonProcessingException {
 
         Map<String, Long> map = new HashMap<>();
+
+        model.addAttribute("version", ver);
 
         //querying the database for projects
         List<Project> projects = projectRepository.findAll();
