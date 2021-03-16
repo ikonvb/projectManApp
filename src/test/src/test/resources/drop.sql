@@ -1,3 +1,3 @@
-DROP TABLE project_employee IF EXISTS;
-DROP TABLE project IF EXISTS;
-DROP TABLE employee IF EXISTS;
+DROP TABLE IF EXISTS project_employee;
+DROP TABLE IF EXISTS project;
+DROP TABLE IF EXISTS employee;
