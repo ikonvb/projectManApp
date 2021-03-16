@@ -2,11 +2,11 @@ package com.konstantinbulygin.pmwebapp.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.konstantinbulygin.pmwebapp.dao.EmployeeRepository;
-import com.konstantinbulygin.pmwebapp.dao.ProjectRepository;
 import com.konstantinbulygin.pmwebapp.dto.ChartData;
 import com.konstantinbulygin.pmwebapp.dto.EmployeeProject;
 import com.konstantinbulygin.pmwebapp.entities.Project;
+import com.konstantinbulygin.pmwebapp.services.EmployeeService;
+import com.konstantinbulygin.pmwebapp.services.ProjectService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,12 +23,12 @@ public class HomeController {
     @Value("${version}")
     private String ver;
 
-    private final ProjectRepository projectRepository;
-    private final EmployeeRepository employeeRepository;
+    private final ProjectService projectService;
+    private final EmployeeService employeeService;
 
-    public HomeController(ProjectRepository projectRepository, EmployeeRepository employeeRepository) {
-        this.projectRepository = projectRepository;
-        this.employeeRepository = employeeRepository;
+    public HomeController(ProjectService projectService, EmployeeService employeeService) {
+        this.projectService = projectService;
+        this.employeeService = employeeService;
     }
 
     @GetMapping("/")
@@ -39,11 +39,11 @@ public class HomeController {
         model.addAttribute("version", ver);
 
         //querying the database for projects
-        List<Project> projects = projectRepository.findAll();
+        List<Project> projects = projectService.getAll();
         //sending the data of projects to home view
         model.addAttribute("projectsList", projects);
 
-        List<ChartData> projectData = projectRepository.getProjectStatus();
+        List<ChartData> projectData = projectService.getProjectStatus();
 
         //covert projectData into a json
         ObjectMapper objectMapper = new ObjectMapper();
@@ -52,7 +52,7 @@ public class HomeController {
 
 
         //querying the database for employees
-        List<EmployeeProject> employeeProjectsCount = employeeRepository.employeeProjects();
+        List<EmployeeProject> employeeProjectsCount = employeeService.getEmployeeProjects();
         //sending the data of employees to home view
         model.addAttribute("employeeProjectsCount", employeeProjectsCount);
 
