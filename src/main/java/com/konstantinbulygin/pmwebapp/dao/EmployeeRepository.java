@@ -4,9 +4,11 @@ import com.konstantinbulygin.pmwebapp.dto.EmployeeProject;
 import com.konstantinbulygin.pmwebapp.entities.Employee;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface EmployeeRepository extends CrudRepository<Employee, Long> {
 
     @Override
