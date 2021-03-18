@@ -4,9 +4,7 @@ import com.konstantinbulygin.pmwebapp.entities.Employee;
 import com.konstantinbulygin.pmwebapp.services.EmployeeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,7 +28,7 @@ public class EmployeeController {
     @PostMapping("/save")
     public String saveEmployee(Employee employee, Model model) {
         employeeService.save(employee);
-        return "redirect:/employees/new";
+        return "redirect:/employees";
     }
 
     @GetMapping
@@ -43,4 +41,36 @@ public class EmployeeController {
         model.addAttribute("employeesList", employees);
         return "employees/list-employees";
     }
+
+    @GetMapping("/edit/{id}")
+    public String displayEditEmployeeForm(@PathVariable long id, Model model) {
+        Employee employee = employeeService.getEmployeeById(id);
+        model.addAttribute("employee", employee);
+        return "employees/new-employee";
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

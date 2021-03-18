@@ -20,4 +20,6 @@ public interface EmployeeRepository extends CrudRepository<Employee, Long> {
                     "GROUP BY e.first_name, e.last_name, e.email " +
                     "ORDER BY 4 DESC")
     List<EmployeeProject> employeeProjects();
+
+    Employee findByEmployeeId(long id);
 }
