@@ -34,8 +34,6 @@ public class HomeController {
     @GetMapping("/")
     public String displayHomeView(Model model) throws JsonProcessingException {
 
-        Map<String, Long> map = new HashMap<>();
-
         model.addAttribute("version", ver);
 
         //querying the database for projects

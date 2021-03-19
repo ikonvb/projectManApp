@@ -1,5 +1,8 @@
 package com.konstantinbulygin.pmwebapp.controllers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.konstantinbulygin.pmwebapp.dto.TimeChartData;
 import com.konstantinbulygin.pmwebapp.entities.Employee;
 import com.konstantinbulygin.pmwebapp.entities.Project;
 import com.konstantinbulygin.pmwebapp.services.EmployeeService;
@@ -55,4 +58,21 @@ public class ProjectController {
 
         return "projects/list-projects";
     }
+
+    @GetMapping("/timelines")
+    public String displayProjectTimelines(Model model) throws JsonProcessingException {
+
+        //querying the database for projects
+        List<TimeChartData> timeLineData = projectService.getTimeData();
+
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        String jsonTimeLine = objectMapper.writeValueAsString(timeLineData);
+
+        //sending the data of projects to home view
+        model.addAttribute("projectTimeList", jsonTimeLine);
+
+        return "projects/project-timelines";
+    }
+
 }
