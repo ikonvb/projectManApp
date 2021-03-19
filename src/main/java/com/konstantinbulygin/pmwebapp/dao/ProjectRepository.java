@@ -20,4 +20,6 @@ public interface ProjectRepository extends CrudRepository<Project, Long> {
                     "GROUP BY stage")
     List<ChartData> getProjectStatus();
 
+
+
 }

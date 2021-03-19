@@ -1,6 +1,10 @@
 package com.konstantinbulygin.pmwebapp.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
@@ -9,13 +13,20 @@ public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "employee_seq")
     @SequenceGenerator(name = "employee_seq", sequenceName = "employee_seq",
-            allocationSize = 1,initialValue=1)
+            allocationSize = 1, initialValue = 1)
     private long employeeId;
 
+
+    @NotBlank(message = "First name must be at least 2 characters long")
+    @Size(min = 2, max = 25)
     private String firstName;
 
+    @NotBlank(message = "Last name must be at least 2 characters long")
+    @Size(min = 2, max = 25)
     private String lastName;
 
+    @NotBlank(message = "Must be a valid email")
+    @Email
     private String email;
 
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST}, fetch = FetchType.LAZY)

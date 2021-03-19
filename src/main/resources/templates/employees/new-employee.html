@@ -13,14 +13,17 @@
 
         <div class="form-group row">
             <input type="text" placeholder="Employee first name" th:field="*{firstName}">
+            <span th:if="${#fields.hasErrors('firstName')}" th:errors="${employee.firstName}"></span>
         </div>
 
         <div class="form-group row">
             <input type="text" placeholder="Employee last name" th:field="*{lastName}">
+            <span th:if="${#fields.hasErrors('lastName')}" th:errors="${employee.lastName}"></span>
         </div>
 
         <div class="form-group row">
             <input type="text" placeholder="Employee email" th:field="*{email}">
+            <span th:if="${#fields.hasErrors('email')}" th:errors="${employee.email}"></span>
         </div>
 
         <!--this will be used to bind to edit existing employee-->
