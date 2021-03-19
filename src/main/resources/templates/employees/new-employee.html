@@ -11,16 +11,22 @@
 <div class="container mt-5">
     <form th:action="@{/employees/save}" th:object="${employee}" method="POST">
 
+        <div class="form-group row">
+            <input type="text" placeholder="Employee first name" th:field="*{firstName}">
+        </div>
+
+        <div class="form-group row">
+            <input type="text" placeholder="Employee last name" th:field="*{lastName}">
+        </div>
+
+        <div class="form-group row">
+            <input type="text" placeholder="Employee email" th:field="*{email}">
+        </div>
+
         <!--this will be used to bind to edit existing employee-->
         <input type="hidden" th:field="${employee.employeeId}">
 
-        <input type="text" placeholder="Employee first name" th:field="*{firstName}">
-        <input type="text" placeholder="Employee last name" th:field="*{lastName}">
-        <input type="text" placeholder="Employee email" th:field="*{email}">
-
-
-
-        <button type="submit">Create Employee</button>
+        <button type="submit" class="btn btn-info col-2">Enter Employee</button>
 
     </form>
 </div>
