@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -37,7 +38,7 @@ public class ProjectController {
 
     //saving project to DB
     @PostMapping("/save")
-    public String saveProject(Project project, Model model) {
+    public String saveProject(Model model, @Valid Project project) {
 
         projectService.save(project);
 

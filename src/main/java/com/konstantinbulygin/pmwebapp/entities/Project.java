@@ -1,6 +1,8 @@
 package com.konstantinbulygin.pmwebapp.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -11,7 +13,7 @@ public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "project_seq")
     @SequenceGenerator(name = "project_seq", sequenceName = "project_seq",
-            allocationSize = 1,initialValue=1)
+            allocationSize = 1, initialValue = 1)
     private long projectId;
 
     private String name;
@@ -19,7 +21,11 @@ public class Project {
     private String stage; // not started, in progress, completed
 
     private String description;
+
+    @NotNull
     private Date startDate;
+
+    @NotNull
     private Date endDate;
 
 
