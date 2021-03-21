@@ -2,6 +2,8 @@ package com.konstantinbulygin.pmwebapp.entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -23,17 +25,22 @@ public class UserAccount {
     private String email;
 
     @Size(min = 4)
+    @NotNull
     private String password;
 
     @Transient
     private String confirmPassword;
 
-    private String role;
+    @NotNull
+    private String role = "ROLE_USER";
 
     private boolean enabled = true;
 
     public UserAccount() {
+
     }
+
+
 
     public String getConfirmPassword() {
         return confirmPassword;

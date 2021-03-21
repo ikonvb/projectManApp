@@ -1,5 +1,6 @@
 package com.konstantinbulygin.pmwebapp.controllers;
 
+import com.konstantinbulygin.pmwebapp.dao.UserAccountRepository;
 import com.konstantinbulygin.pmwebapp.entities.Employee;
 import com.konstantinbulygin.pmwebapp.services.EmployeeService;
 import org.springframework.stereotype.Controller;
@@ -17,8 +18,19 @@ public class EmployeeController {
 
     private final EmployeeService employeeService;
 
-    public EmployeeController(EmployeeService employeeService) {
+    public EmployeeController(EmployeeService employeeService, UserAccountRepository userAccountRepository) {
         this.employeeService = employeeService;
+    }
+
+    @GetMapping
+    public String displayEmployees(Model model) {
+
+        //querying the database for employees
+        List<Employee> employees = employeeService.getAll();
+
+        //sending the data of employees to home view
+        model.addAttribute("employeesList", employees);
+        return "employees/list-employees";
     }
 
     @GetMapping("/new")
@@ -36,22 +48,17 @@ public class EmployeeController {
             redirectAttributes.addFlashAttribute("alertClass", "alert-danger");
             return "redirect:/employees/new";
         }
+
         redirectAttributes.addFlashAttribute("message", "Employee added");
         redirectAttributes.addFlashAttribute("alertClass", "alert-success");
+
+
+
         employeeService.save(employee);
         return "redirect:/employees/new";
     }
 
-    @GetMapping
-    public String displayEmployees(Model model) {
 
-        //querying the database for employees
-        List<Employee> employees = employeeService.getAll();
-
-        //sending the data of employees to home view
-        model.addAttribute("employeesList", employees);
-        return "employees/list-employees";
-    }
 
     @GetMapping("/edit/{id}")
     public String displayEditEmployeeForm(@PathVariable long id, Model model) {

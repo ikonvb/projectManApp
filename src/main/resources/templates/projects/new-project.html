@@ -12,6 +12,7 @@
 <div class="container mt-5">
 
     <div th:if="${message}" th:text="${message}" th:class="${'alert ' + alertClass}"></div>
+
     <form th:action="@{/projects/save}" th:object="${project}" method="POST">
 
         <!--this will be used to bind to edit existing project-->

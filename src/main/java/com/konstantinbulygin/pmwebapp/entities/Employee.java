@@ -28,6 +28,7 @@ public class Employee {
     @Email
     private String email;
 
+
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST}, fetch = FetchType.LAZY)
     @JoinTable(name = "project_employee",
             joinColumns = @JoinColumn(name = "employee_id"),

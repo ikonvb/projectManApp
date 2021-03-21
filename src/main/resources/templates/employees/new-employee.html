@@ -10,7 +10,10 @@
 
 
 <div class="container mt-5">
+
     <div th:if="${message}" th:text="${message}" th:class="${'alert ' + alertClass}"></div>
+
+
     <form th:action="@{/employees/save}" th:object="${employee}" method="POST">
 
         <div class="form-group row">
