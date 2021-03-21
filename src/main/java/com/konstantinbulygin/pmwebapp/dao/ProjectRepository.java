@@ -22,5 +22,6 @@ public interface ProjectRepository extends CrudRepository<Project, Long> {
     @Query(nativeQuery = true, value = "SELECT name AS projectName, start_date AS startDate, end_date AS endDate FROM project")
     List<TimeChartData> getTimeData();
 
+    Project findByProjectId(long id);
 
 }

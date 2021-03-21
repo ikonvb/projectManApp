@@ -4,8 +4,9 @@ import com.konstantinbulygin.pmwebapp.entities.Employee;
 import com.konstantinbulygin.pmwebapp.services.EmployeeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -28,13 +29,17 @@ public class EmployeeController {
 
     //saving project to DB
     @PostMapping("/save")
-    public String saveEmployee(Model model, @Valid Employee employee, Errors errors) {
+    public String saveEmployee(Model model, @Valid Employee employee, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 
-        if (errors.hasErrors()) {
-            return "employees/new-employee";
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("message", "Employee not added you have a problem");
+            redirectAttributes.addFlashAttribute("alertClass", "alert-danger");
+            return "redirect:/employees/new";
         }
+        redirectAttributes.addFlashAttribute("message", "Employee added");
+        redirectAttributes.addFlashAttribute("alertClass", "alert-success");
         employeeService.save(employee);
-        return "redirect:/employees";
+        return "redirect:/employees/new";
     }
 
     @GetMapping

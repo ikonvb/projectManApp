@@ -3,6 +3,7 @@ package com.konstantinbulygin.pmwebapp.entities;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -16,10 +17,14 @@ public class Project {
             allocationSize = 1, initialValue = 1)
     private long projectId;
 
+    @Size(min = 2)
+    @NotBlank
     private String name;
 
     private String stage; // not started, in progress, completed
 
+    @Size(min = 5)
+    @NotBlank
     private String description;
 
     @NotNull

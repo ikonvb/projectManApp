@@ -33,4 +33,11 @@ public class ProjectService {
         return projectRepository.getTimeData();
     }
 
+    public Project getProjectById(long id) {
+        return projectRepository.findByProjectId(id);
+    }
+
+    public void delete(long id) {
+        projectRepository.deleteById(id);
+    }
 }

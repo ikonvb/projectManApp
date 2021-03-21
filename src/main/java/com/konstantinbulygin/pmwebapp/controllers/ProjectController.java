@@ -9,9 +9,12 @@ import com.konstantinbulygin.pmwebapp.services.EmployeeService;
 import com.konstantinbulygin.pmwebapp.services.ProjectService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 import javax.validation.Valid;
@@ -41,11 +44,19 @@ public class ProjectController {
 
     //saving project to DB
     @PostMapping("/save")
-    public String saveProject(Model model, @Valid Project project) {
+    public String saveProject(Model model, @Valid Project project, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("message", "Project not added you have a problem");
+            redirectAttributes.addFlashAttribute("alertClass", "alert-danger");
+            return "redirect:/projects/new";
+        }
+        redirectAttributes.addFlashAttribute("message", "Project added");
+        redirectAttributes.addFlashAttribute("alertClass", "alert-success");
 
         projectService.save(project);
 
-        return "redirect:/projects";
+        return "redirect:/projects/new";
     }
 
     @GetMapping
@@ -58,6 +69,25 @@ public class ProjectController {
 
         return "projects/list-projects";
     }
+
+    @GetMapping("/edit/{id}")
+    public String displayEditProject(@PathVariable long id, Model model) {
+
+        List<Employee> allEmployees = employeeService.getAll();
+        Project project = projectService.getProjectById(id);
+
+        model.addAttribute("allEmployees", allEmployees);
+        model.addAttribute("project", project);
+
+        return "projects/new-project";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteProject(@PathVariable long id) {
+        projectService.delete(id);
+        return "redirect:/projects";
+    }
+
 
     @GetMapping("/timelines")
     public String displayProjectTimelines(Model model) throws JsonProcessingException {
