@@ -37,10 +37,3 @@ function decodeHtml(html) {
     txt.innerHTML = html;
     return txt.value;
 }
-
-// $(function () {
-//
-//     $("a.confirmDeletion").click(function () {
-//         if (!confirm("Confirm deletion")) return false;
-//     });
-// });

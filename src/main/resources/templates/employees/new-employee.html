@@ -3,10 +3,11 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="fragments/head_layout :: header"></head>
+<nav th:replace="fragments/nav_layout :: navbar"></nav>
 
 <body>
 
-<nav th:replace="fragments/nav_layout :: navbar"></nav>
+
 
 <div class="container mt-5">
     <div th:if="${message}" th:text="${message}" th:class="${'alert ' + alertClass}"></div>
