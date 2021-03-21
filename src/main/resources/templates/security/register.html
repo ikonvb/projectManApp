@@ -5,35 +5,54 @@
 
 <body>
 
-<div class="container mt-10">
-
+<div class="container-fluid mt-5">
     <div class="row">
 
-        <form autocomplete="off" th:action="@{/register/save}" th:object="${userAccount}" method="post" class="form-signin" role="form">
-            <h3 class="form-signin-heading">Registration Form</h3>
-            <div class="form-group">
-                <div class="">
-                    <input type="text" th:field="*{userName}" placeholder="User Name" class="form-control"/>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="">
-                    <input type="text" th:field="*{email}" placeholder="Email" class="form-control"/>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="">
-                    <input type="password" th:field="*{password}" placeholder="Password" class="form-control"/>
-                </div>
-            </div>
+        <div class="col-4 text-center">
 
-            <div class="form-group">
-                <div class="">
+            <h3>Registration Form</h3>
+
+            <form th:action="@{/register/save}" th:object="${userAccount}" method="post">
+
+                <!--Filed for errors -->
+                <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">There are errors</div>
+
+
+                <!--Filed for userName -->
+                <div class="form-group">
+                    <input type="text" th:field="*{userName}" placeholder="User Name" class="form-control"/>
+                    <span class="error" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></span>
+                </div>
+
+                <!--Filed for email -->
+                <div class="form-group">
+                    <input type="text" th:field="*{email}" placeholder="Email" class="form-control" required/>
+                    <span class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+                </div>
+
+                <!--Filed for password -->
+                <div class="form-group">
+                    <input type="password" th:field="*{password}" placeholder="Password" class="form-control"/>
+                    <span class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+                </div>
+
+                <!--Filed for confirmPassword -->
+                <div class="form-group">
+                    <input type="password" th:field="*{confirmPassword}" placeholder="Confirm password"
+                           class="form-control"/>
+                    <span class="error" th:if="${passwordMathProblem}" th:text="${passwordMathProblem}"></span>
+                </div>
+
+                <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-block">Register User</button>
                 </div>
-            </div>
-            <!-- <span th:utext="${successMessage}"></span> -->
-        </form>
+
+                <p>
+                    Click <a th:href="@{/login}">here</a> to login.
+                </p>
+                <!-- <span th:utext="${successMessage}"></span> -->
+            </form>
+        </div>
     </div>
 </div>
 </body>

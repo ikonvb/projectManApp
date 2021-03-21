@@ -1,6 +1,8 @@
 package com.konstantinbulygin.pmwebapp.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "user_accounts")
@@ -14,17 +16,31 @@ public class UserAccount {
     private long userId;
 
     @Column(name = "username")
+    @Size(min = 2)
     private String userName;
 
+    @Email
     private String email;
 
+    @Size(min = 4)
     private String password;
+
+    @Transient
+    private String confirmPassword;
 
     private String role;
 
     private boolean enabled = true;
 
     public UserAccount() {
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
     }
 
     public long getUserId() {
