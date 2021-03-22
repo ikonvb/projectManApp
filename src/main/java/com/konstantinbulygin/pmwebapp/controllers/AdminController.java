@@ -19,11 +19,9 @@ import java.util.List;
 @RequestMapping("/admin")
 public class AdminController {
 
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final UserAccountService userAccountService;
 
     public AdminController(BCryptPasswordEncoder bCryptPasswordEncoder, UserAccountService userAccountService) {
-        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
         this.userAccountService = userAccountService;
     }
 
@@ -48,7 +46,6 @@ public class AdminController {
 
         redirectAttributes.addFlashAttribute("message", "User changed");
         redirectAttributes.addFlashAttribute("alertClass", "alert-success");
-        userAccount.setPassword(bCryptPasswordEncoder.encode(userAccount.getPassword()));
 
         userAccountService.save(userAccount);
 

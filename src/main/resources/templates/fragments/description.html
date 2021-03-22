@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+
+<head th:replace="fragments/head_layout :: header"></head>
+
+<div th:fragment="description" class="container col-6">
+    <p>
+        Project made for demonstration purpose.
+        It uses Java 11 Spring Boot Spring Security PostgreSQL Thymeleaf
+        You can register new user or use already existing user.
+        User has 2 roles for using this app.
+        Log in  : user
+        password: user
+
+        Log in  : admin
+        password: admin
+    </p>
+</div>
+</html>

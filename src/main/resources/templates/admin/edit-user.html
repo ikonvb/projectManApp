@@ -27,13 +27,15 @@
         </div>
 
         <div class="form-group row">
-            <input type="text" th:field="*{password}">
+            <input type="hidden" th:field="*{password}">
             <span th:if="${#fields.hasErrors('password')}" th:errors="${userAccount.password}"></span>
         </div>
 
         <div class="form-group row">
-            <input type="text" th:field="*{role}">
-            <span th:if="${#fields.hasErrors('role')}" th:errors="${userAccount.role}"></span>
+            <select th:field="${userAccount.role}">
+                <option th:value="ROLE_USER">ROLE_USER</option>
+                <option th:value="ROLE_ADMIN">ROLE_ADMIN</option>
+            </select>
         </div>
 
         <!--this will be used to bind to edit existing employee-->
