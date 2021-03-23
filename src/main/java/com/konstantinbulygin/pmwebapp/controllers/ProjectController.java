@@ -18,6 +18,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 import javax.validation.Valid;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -71,7 +75,7 @@ public class ProjectController {
     }
 
     @GetMapping("/edit/{id}")
-    public String displayEditProject(@PathVariable long id, Model model) {
+    public String displayEditProject(@PathVariable long id, Model model) throws ParseException {
 
         List<Employee> allEmployees = employeeService.getAll();
         Project project = projectService.getProjectById(id);

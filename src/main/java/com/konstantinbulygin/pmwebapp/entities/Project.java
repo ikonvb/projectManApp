@@ -1,5 +1,7 @@
 package com.konstantinbulygin.pmwebapp.entities;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -28,9 +30,11 @@ public class Project {
     private String description;
 
     @NotNull
+    @DateTimeFormat(pattern="MM/dd/YYYY")
     private Date startDate;
 
     @NotNull
+    @DateTimeFormat (pattern="MM/dd/YYYY")
     private Date endDate;
 
 

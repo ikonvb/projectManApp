@@ -8,7 +8,6 @@
 <body>
 
 
-
 <div class="container mt-5">
 
     <div th:if="${message}" th:text="${message}" th:class="${'alert ' + alertClass}"></div>
@@ -36,7 +35,8 @@
         <!--List of employee-->
         <div class="form-group row">
             <select th:field="*{employees}" multiple="multiple">
-                <option th:each="employee: ${allEmployees}" th:value="${employee.employeeId}" th:text="${employee.firstName}"></option>
+                <option th:each="employee: ${allEmployees}" th:value="${employee.employeeId}"
+                        th:text="${employee.firstName}"></option>
             </select>
         </div>
 
@@ -53,6 +53,7 @@
 
         <h4>Project end date</h4>
         <div class="form-group row">
+
             <input id="dp4" type="text" class="mb-4 col-2 col-xs-4" value="End date" th:field="${project.endDate}"/>
             <span th:if="${#fields.hasErrors('endDate')}" th:errors="${project.endDate}"></span>
         </div>
