@@ -7,14 +7,10 @@
 
 <body>
 
-
-
 <div class="container mt-2">
 
     <h3>Current users</h3>
     <hr>
-
-<!--    <a th:href="@{/employees/new}" class="btn btn-primary btn-sm mb-3">Add new employee</a>-->
 
     <table class="table table-bordered table-striped">
         <thead class="thead-dark">
@@ -26,7 +22,9 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="aUser : ${userAccountsList}">
+
+         <!-- th:if="${(principal == aUser.userName) && sec:authorize="hasRole('ROLE_ADMIN')}"-->
+        <tr th:each="aUser : ${userAccountsList}" th:unless="${principal == aUser.userName}">
             <td th:text="${aUser.userName}"></td>
             <td th:text="${aUser.email}"></td>
             <td th:text="${aUser.role}"></td>

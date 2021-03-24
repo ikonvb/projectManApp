@@ -2,3 +2,8 @@ span.error {
     color: red!important;
 }
 
+img {
+    width: 2%;
+    height: auto;
+    background: white;
+}
