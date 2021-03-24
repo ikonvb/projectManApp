@@ -45,7 +45,12 @@
             ]);
         }
 
-        chart.draw(dataTable);
+        let options = {
+            avoidOverlappingGridLines: false,
+            height: 800
+        };
+
+        chart.draw(dataTable, options);
     }
 
     function decodeHtml(html) {
@@ -56,7 +61,14 @@
 
 </script>
 
-<div id="chart_div"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <div id="chart_div"></div>
+        </div>
+
+    </div>
+</div>
 
 </body>
 
