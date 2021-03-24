@@ -7,20 +7,17 @@ import com.konstantinbulygin.pmwebapp.dto.EmployeeProject;
 import com.konstantinbulygin.pmwebapp.entities.Project;
 import com.konstantinbulygin.pmwebapp.services.EmployeeService;
 import com.konstantinbulygin.pmwebapp.services.ProjectService;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
 
 @Controller
+@RequestMapping("/")
 public class HomeController {
-
-    //variable from app.properties
-    @Value("${version}")
-    private String ver;
 
     private final ProjectService projectService;
     private final EmployeeService employeeService;
@@ -30,10 +27,14 @@ public class HomeController {
         this.employeeService = employeeService;
     }
 
-    @GetMapping("/")
+//    @GetMapping
+//    public String showLogin(){
+//        return "security/login";
+//    }
+
+    @GetMapping
     public String displayHomeView(Model model) throws JsonProcessingException {
 
-        model.addAttribute("version", ver);
 
         //querying the database for projects
         List<Project> projects = projectService.getAll();

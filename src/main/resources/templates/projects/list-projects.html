@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head th:replace="fragments/head_layout :: header"></head>
 <nav th:replace="fragments/nav_layout :: navbar"></nav>
@@ -14,21 +15,21 @@
     <h3>Project directory</h3>
     <hr>
 
-    <a th:href="@{/projects/new}" class="btn btn-primary btn-sm mb-3">Add new project</a>
+    <a th:href="@{/projects/new}" sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-primary btn-sm mb-3">Add new project</a>
 
     <table class="table table-bordered table-striped">
         <thead class="thead-dark">
         <tr>
             <th>Project Name</th>
             <th>Project Stage</th>
-            <th>Action</th>
+            <th sec:authorize="hasRole('ROLE_ADMIN')">Action</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="aProject : ${projectsList}">
             <td th:text="${aProject.name}"></td>
             <td th:text="${aProject.stage}"></td>
-            <td>
+            <td sec:authorize="hasRole('ROLE_ADMIN')">
                 <a th:href="@{'/projects/edit/' + ${aProject.getProjectId()}}" class="btn btn-info btn-sm">Edit</a>
                 <a th:href="@{'/projects/delete/' + ${aProject.getProjectId()}}" class="btn btn-danger btn-sm" onclick="if (!(confirm('Are you sure?'))) return false">Delete</a>
             </td>

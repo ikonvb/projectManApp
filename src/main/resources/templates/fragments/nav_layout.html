@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head th:replace="fragments/head_layout :: header"></head>
 
@@ -21,7 +22,7 @@
             <li class="nav-item">
                 <a class="nav-link" th:href="@{/projects/timelines}">Projects Timelines</a>
             </li>
-            <li class="nav-item">
+            <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">
                 <a class="nav-link" th:href="@{/admin}">Admin section</a>
             </li>
         </ul>
@@ -38,7 +39,7 @@
         </ul>
 
         <form th:if="${principal != null}" method="post" th:action="@{/logout}">
-            <span class="text-white" th:text="${'Hi, ' + principal}"></span>
+            <span class="text-white mr-2" th:text="${'Hi, ' + principal}"></span>
             <button class="btn btn-secondary">Logout</button>
         </form>
     </div>
