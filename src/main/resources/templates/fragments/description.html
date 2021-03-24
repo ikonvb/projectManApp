@@ -4,17 +4,17 @@
 
 <head th:replace="fragments/head_layout :: header"></head>
 
-<div th:fragment="description" class="container col-6">
-    <p>
-        Project made for demonstration purpose.
-        It uses Java 11 Spring Boot Spring Security PostgreSQL Thymeleaf
-        You can register new user or use already existing user.
-        User has 2 roles for using this app.
-        Log in  : user
-        password: user
-
-        Log in  : admin
-        password: admin
+<div th:fragment="description-login">
+    <p>If you want to explore all CRUD actions you have to login with this credentials:</p>
+    <p>Login: admin</p>
+    <p>Password: admin</p>
+    <p>or you can register you own user and use only allowed functionality.</p>
     </p>
+</div>
+
+<div th:fragment="description-register">
+    <p>Here you can register you own user with "ROLE_USER" only.</p>
+    <p>But if you want to change role of you own user you can log in as admin and change your recently created user
+        "ROLE_USER" to "ROLE_ADMIN" in admin section</p>
 </div>
 </html>

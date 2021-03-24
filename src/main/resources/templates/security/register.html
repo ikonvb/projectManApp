@@ -6,9 +6,7 @@
 
 <body>
 
-<div class="container col-sm-3">
-
-
+<div class="container mt-5 col-3">
 
     <form th:action="@{/register/save}" th:object="${userAccount}" method="post">
 
@@ -49,10 +47,12 @@
         <p class="text-center">
             Click <a th:href="@{/login}">here</a> to login.
         </p>
-
-        <div th:replace="fragments/description :: description"></div>
-
     </form>
 </div>
+
+<div class="text-center container mt-5 col-4">
+    <div class="text-center" th:replace="fragments/description :: description-register"></div>
+</div>
+
 </body>
 </html>
