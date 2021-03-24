@@ -7,7 +7,6 @@
 
 <body>
 
-
 <div class="container mt-5 col-3">
 
     <div th:if="${message}" th:text="${message}" th:class="${'alert ' + alertClass}"></div>
@@ -19,14 +18,14 @@
 
         <!--Project name field-->
         <div class="form-group">
-            <label for="">Project name:</label>
+            <label>Project name:</label>
             <input class="form-control" type="text" placeholder="Project name" th:field="*{name}">
             <span class="error" th:if="${#fields.hasErrors('name')}" th:errors="${project.name}"></span>
         </div>
 
         <!--Project stage field-->
         <div class="form-group">
-            <label for="">Project stage:</label>
+            <label>Project stage:</label>
             <select class="form-control"  th:field="${project.stage}">
                 <option th:value="NOTSTARTED"> Not Started</option>
                 <option th:value="INPROGRESS"> In Progress</option>
@@ -36,7 +35,7 @@
 
         <!--List of employee-->
         <div class="form-group">
-            <label for="">Available employees:</label>
+            <label>Available employees:</label>
             <select class="form-control"  th:field="*{employees}" multiple="multiple">
                 <option th:each="employee: ${allEmployees}" th:value="${employee.employeeId}"
                         th:text="${employee.firstName}"></option>
@@ -44,19 +43,19 @@
         </div>
 
         <div class="form-group">
-            <label for="">Project description:</label>
+            <label>Project description:</label>
             <textarea class="form-control" type="text" placeholder="Project description" th:field="${project.description}"></textarea>
             <span th:if="${#fields.hasErrors('description')}" th:errors="${project.description}"></span>
         </div>
 
         <div class="form-group">
-            <label for="">Project start date:</label>
+            <label>Project start date:</label>
             <input id="dp3" type="text" class="form-control mb-4 col-3" value="Start date" th:field="${project.startDate}"/>
             <span th:if="${#fields.hasErrors('startDate')}" th:errors="${project.startDate}"></span>
         </div>
 
         <div class="form-group">
-            <label for="">Project end date:</label>
+            <label>Project end date:</label>
             <input id="dp4" type="text" class="form-control mb-4 col-3" value="End date" th:field="${project.endDate}"/>
             <span th:if="${#fields.hasErrors('endDate')}" th:errors="${project.endDate}"></span>
         </div>

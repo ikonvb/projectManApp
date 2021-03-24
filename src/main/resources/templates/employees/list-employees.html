@@ -8,14 +8,13 @@
 
 <body>
 
-
-
 <div class="container mt-2">
 
     <h3>Current employees</h3>
     <hr>
 
-    <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/employees/new}" class="btn btn-primary btn-sm mb-3">Add new employee</a>
+    <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/employees/new}" class="btn btn-primary btn-sm mb-3">Add new
+        employee</a>
 
     <table class="table table-bordered table-striped">
         <thead class="thead-dark">
@@ -33,7 +32,8 @@
             <td th:text="${aEmployee.email}"></td>
             <td sec:authorize="hasRole('ROLE_ADMIN')">
                 <a th:href="@{'/employees/edit/' + ${aEmployee.employeeId}}" class="btn btn-info btn-sm">Edit</a>
-                <a th:href="@{'/employees/delete/' + ${aEmployee.employeeId}}" class="btn btn-danger btn-sm" onclick="if (!(confirm('Are you sure?'))) return false">Delete</a>
+                <a th:href="@{'/employees/delete/' + ${aEmployee.employeeId}}" class="btn btn-danger btn-sm"
+                   onclick="if (!(confirm('Are you sure?'))) return false">Delete</a>
             </td>
         </tr>
         </tbody>

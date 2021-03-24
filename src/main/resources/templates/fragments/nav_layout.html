@@ -23,11 +23,11 @@
             <li class="nav-item">
                 <a class="nav-link" th:href="@{/projects/timelines}">Projects Timelines</a>
             </li>
+
             <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">
-                <a class="nav-link" th:href="@{/admin}">Admin section</a>
+                <a class="nav-link" th:href="@{/admin}">Admin users</a>
             </li>
         </ul>
-
 
         <!-- Register and login link-->
         <ul class="float-right navbar-nav" th:if="${principal == null}">

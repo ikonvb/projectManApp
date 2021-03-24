@@ -15,13 +15,13 @@
     <form th:action="@{/admin/save}" th:object="${userAccount}" method="POST">
 
         <div class="form-group">
-            <label for="">Name:</label>
+            <label>Name:</label>
             <input class="form-control" type="text" th:field="*{userName}">
             <span th:if="${#fields.hasErrors('userName')}" th:errors="${userAccount.userName}"></span>
         </div>
 
         <div class="form-group">
-            <label for="">E-mail:</label>
+            <label>E-mail:</label>
             <input class="form-control" type="text" th:field="*{email}">
             <span th:if="${#fields.hasErrors('email')}" th:errors="${userAccount.email}"></span>
         </div>
@@ -32,7 +32,7 @@
         </div>
 
         <div class="form-group">
-            <label for="">Role:</label>
+            <label>Role:</label>
             <select class="form-control" th:field="${userAccount.role}">
                 <option th:value="ROLE_USER">ROLE_USER</option>
                 <option th:value="ROLE_ADMIN">ROLE_ADMIN</option>
