@@ -19,21 +19,19 @@ public class Project {
             allocationSize = 1, initialValue = 1)
     private long projectId;
 
-    @Size(min = 2)
-    @NotBlank
+    @Size(min = 3, message = "Name must be at least 3 characters long")
     private String name;
 
-    private String stage; // not started, in progress, completed
+    private String stage;
 
-    @Size(min = 5)
-    @NotBlank
+    @Size(min = 5, message = "Description must be at least 5 characters long")
     private String description;
 
-    @NotNull
+    @NotNull(message = "Please enter a valid date")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date startDate;
 
-    @NotNull
+    @NotNull(message = "Please enter a valid date")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endDate;
 

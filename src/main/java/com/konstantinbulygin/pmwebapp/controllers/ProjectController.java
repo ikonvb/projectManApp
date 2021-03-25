@@ -10,6 +10,7 @@ import com.konstantinbulygin.pmwebapp.services.ProjectService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -45,13 +46,19 @@ public class ProjectController {
 
     //saving project to DB
     @PostMapping("/save")
-    public String saveProject(@Valid Project project, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+    public String saveProject(@Valid Project project, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
 
         if (bindingResult.hasErrors()) {
-            redirectAttributes.addFlashAttribute("message", "Project not added you have a problem");
-            redirectAttributes.addFlashAttribute("alertClass", "alert-danger");
+            List<Employee> allEmployees = employeeService.getAll();
+            model.addAttribute("allEmployees", allEmployees);
+            return "projects/new-project";
+        }
+
+        if (project.getStartDate().getTime() > project.getEndDate().getTime()) {
+            redirectAttributes.addFlashAttribute("dateValidation", "Please choose proper date");
             return "redirect:/projects/new";
         }
+
         redirectAttributes.addFlashAttribute("message", "Project added");
         redirectAttributes.addFlashAttribute("alertClass", "alert-success");
 
