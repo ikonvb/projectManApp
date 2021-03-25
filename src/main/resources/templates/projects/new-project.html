@@ -54,15 +54,13 @@
 
                 <div class="form-group col-md">
                     <label>Project start date:</label>
-                    <input id="dp3" type="text" class="form-control text-center" value="Start date"
-                           th:field="${project.startDate}"/>
+                    <input id="dp3" type="datetime" class="form-control text-center" th:field="*{startDate}"/>
                     <span th:if="${#fields.hasErrors('startDate')}" th:errors="${project.startDate}"></span>
                 </div>
 
                 <div class="form-group col-md">
                     <label>Project end date:</label>
-                    <input id="dp4" type="text" class="form-control text-center" value="End date"
-                           th:field="${project.endDate}"/>
+                    <input id="dp4" type="datetime" class="form-control text-center" th:field="*{endDate}"/>
                     <span th:if="${#fields.hasErrors('endDate')}" th:errors="${project.endDate}"></span>
                 </div>
 
@@ -71,8 +69,8 @@
         </div>
 
         <script type="text/javascript">
-            $('#dp3').datepicker();
-            $('#dp4').datepicker();
+            $('#dp3').datepicker({dateFormat: "yy-mm-dd"});
+            $('#dp4').datepicker({dateFormat: "yy-mm-dd"});
         </script>
 
         <button type="submit" class="form-control btn btn-info">Enter Project</button>

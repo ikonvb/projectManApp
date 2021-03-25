@@ -18,10 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 import javax.validation.Valid;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -48,7 +45,7 @@ public class ProjectController {
 
     //saving project to DB
     @PostMapping("/save")
-    public String saveProject(Model model, @Valid Project project, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+    public String saveProject(@Valid Project project, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("message", "Project not added you have a problem");
@@ -82,7 +79,6 @@ public class ProjectController {
 
         model.addAttribute("allEmployees", allEmployees);
         model.addAttribute("project", project);
-
         return "projects/new-project";
     }
 

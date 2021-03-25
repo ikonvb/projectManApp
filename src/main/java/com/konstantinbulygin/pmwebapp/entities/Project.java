@@ -30,11 +30,11 @@ public class Project {
     private String description;
 
     @NotNull
-    @DateTimeFormat(pattern="MM/dd/YYYY")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date startDate;
 
     @NotNull
-    @DateTimeFormat (pattern="MM/dd/YYYY")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endDate;
 
 
