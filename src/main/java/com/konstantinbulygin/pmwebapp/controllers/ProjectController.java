@@ -48,6 +48,7 @@ public class ProjectController {
     @PostMapping("/save")
     public String saveProject(@Valid Project project, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
 
+        //return to view if project has errors in fields
         if (bindingResult.hasErrors()) {
             List<Employee> allEmployees = employeeService.getAll();
             model.addAttribute("allEmployees", allEmployees);
@@ -55,8 +56,18 @@ public class ProjectController {
         }
 
         if (project.getStartDate().getTime() > project.getEndDate().getTime()) {
-            redirectAttributes.addFlashAttribute("dateValidation", "Please choose proper date");
-            return "redirect:/projects/new";
+            List<Employee> allEmployees = employeeService.getAll();
+            model.addAttribute("allEmployees", allEmployees);
+            model.addAttribute("dateValidation", "Please choose a proper range date");
+            return "projects/new-project";
+            //return "redirect:/projects/new";
+        }
+
+        if (project.getEmployees().size() == 0) {
+            model.addAttribute("employeeValidation", "Please choose one or more employees");
+            List<Employee> allEmployees = employeeService.getAll();
+            model.addAttribute("allEmployees", allEmployees);
+            return "projects/new-project";
         }
 
         redirectAttributes.addFlashAttribute("message", "Project added");

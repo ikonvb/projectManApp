@@ -44,6 +44,7 @@
                 <option th:each="employee: ${allEmployees}" th:value="${employee.employeeId}"
                         th:text="${employee.firstName}"></option>
             </select>
+            <span class="error" th:if="${employeeValidation}" th:text="${employeeValidation}"></span>
         </div>
 
         <div class="form-group">
@@ -55,24 +56,19 @@
 
         <div class="container">
             <div class="row">
-
                 <div class="form-group col-md">
                     <label>Project start date:</label>
-
                     <input id="dp3" type="datetime" class="form-control text-center" th:field="*{startDate}"/>
                     <span class="error" th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}"></span>
-                    <span class="error" th:if="${dateValidation}" th:text="${dateValidation}"></span>
                 </div>
 
                 <div class="form-group col-md">
                     <label>Project end date:</label>
                     <input id="dp4" type="datetime" class="form-control text-center" th:field="*{endDate}"/>
                     <span class="error" th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}"></span>
-                    <span class="error" th:if="${dateValidation}" th:text="${dateValidation}"></span>
                 </div>
-
             </div>
-
+            <div class="error text-center" th:if="${dateValidation}" th:text="${dateValidation}"></div>
         </div>
 
         <script type="text/javascript">
