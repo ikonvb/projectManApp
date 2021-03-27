@@ -5,6 +5,9 @@ div.error {
     color: red!important;
 }
 
+footer.footer {
+    height: 50px;
+}
 img {
     width: 2%;
     height: auto;
