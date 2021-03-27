@@ -1,1 +1,1 @@
-web: java -jar target/p_m_web_app-0.0.1-SNAPSHOT.jar
+web: java -jar target/pma-app.jar
