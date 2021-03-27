@@ -16,15 +16,15 @@ public class Employee {
     private long employeeId;
 
 
-    @NotBlank(message = "First name must be at least 2 characters long")
-    @Size(min = 2, max = 25)
+    @NotBlank(message = "")
+    @Size(min = 3, max = 25, message = "First name must be at least 3 characters long")
     private String firstName;
 
-    @NotBlank(message = "Last name must be at least 2 characters long")
-    @Size(min = 2, max = 25)
+    @NotBlank(message = "")
+    @Size(min = 3, max = 25, message = "Last name must be at least 3 characters long")
     private String lastName;
 
-    @NotBlank(message = "Must be a valid email")
+    @NotBlank(message = "Please enter a valid email")
     @Email
     private String email;
 

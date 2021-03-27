@@ -2,6 +2,7 @@ package com.konstantinbulygin.pmwebapp.entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -17,13 +18,15 @@ public class UserAccount {
     private long userId;
 
     @Column(name = "username")
-    @Size(min = 2)
+    @NotBlank(message = "")
+    @Size(min = 3, message = "The name must be at least 3 characters long")
     private String userName;
 
+    @NotBlank(message = "Please enter a valid email")
     @Email
     private String email;
 
-    @Size(min = 4)
+    @Size(min = 4, message = "Password must be at least 4 characters long")
     @NotNull
     private String password;
 

@@ -44,15 +44,11 @@ public class EmployeeController {
     public String saveEmployee(Model model, @Valid Employee employee, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 
         if (bindingResult.hasErrors()) {
-            redirectAttributes.addFlashAttribute("message", "Employee not added you have a problem");
-            redirectAttributes.addFlashAttribute("alertClass", "alert-danger");
-            return "redirect:/employees/new";
+            return "employees/new-employee";
         }
 
         redirectAttributes.addFlashAttribute("message", "Employee added");
         redirectAttributes.addFlashAttribute("alertClass", "alert-success");
-
-
 
         employeeService.save(employee);
         return "redirect:/employees/new";
