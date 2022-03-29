@@ -1,3 +1,4 @@
+[EN](https://github.com/kostyaFrom/projectManApp/blob/main/README.en.md)    
 # Project Managment App    
 [Рабочая версия на Heroku](https://online-pma-app.herokuapp.com/)    
 
